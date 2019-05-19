@@ -33,9 +33,10 @@
     <script id="template" type="text/x-jsrender">
         <div class="container pt-5">
             <div class="row">
-                <div class="col text-center"
+                <div class="col text-center d-none d-sm-block"
                     style="background-color: #323544;border-radius: 15px 0px 0px 15px;flex:0 0 1%;">
-                    <div class="row pt-2 pb-2" style="background-color: #2d303d;border-radius: 15px 0px 0px 0px;">&nbsp;</div>
+                    <div class="row pt-2 pb-2"
+                        style="background-color: #2d303d;border-radius: 15px 0px 0px 0px;">&nbsp;</div>
                 </div>
                 <div class="col-*-* pr-3" style="background-color: #323544;">
                     <div class="row pt-2 pb-2" style="background-color: #2d303d;">
@@ -73,7 +74,7 @@
                     </div>
                 </div>
                 {{for forecast.forecastday tmpl="#forecastdayTemplate" /}}
-                <div class="col text-center"
+                <div class="col text-center d-none d-sm-block"
                     style="background-color: #323544;border-radius: 0px 15px 15px 0px;flex:0 0 1%;">
                     <div class="row pt-2 pb-2" style="background-color: #2d303d;border-radius: 0px 15px 0px 0px;">&nbsp;</div>
                 </div>
@@ -97,6 +98,12 @@
         </div>
     </script>
     <script src="//code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.3/jsrender.min.js"></script>
     <script>
     
