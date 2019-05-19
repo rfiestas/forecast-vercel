@@ -97,6 +97,50 @@
             </div>
         </div>
     </script>
+    <script id="template404" type="text/x-jsrender">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col text-center d-none d-sm-block"
+                    style="background-color: #323544;border-radius: 15px 0px 0px 15px;flex:0 0 1%;">
+                    <div class="row pt-2 pb-2"
+                        style="background-color: #2d303d;border-radius: 15px 0px 0px 0px;">&nbsp;</div>
+                </div>
+                <div class="col-5 pr-3" style="background-color: #323544;">
+                    <div class="row pt-2 pb-2" style="background-color: #2d303d;">
+                        <div class="col">Monday</div>
+                        <div class="col text-right">1 Jan</div>
+                    </div>
+                    <div class="row pt-4 pl-1">
+                        <div class="col"><p style="font-size:18px;">Ops</p></div>
+                    </div>
+                    <div class="row display-1 pl-1">
+                        <div class="col font-weight-bold">
+                            <p style="color:#fff ">404<sup>o</sup>C</p>
+                        </div>
+                        <div class="col">
+                            <i class="wi wi-day-storm-showers" style="color:#d65a31"></i>
+                        </div>
+                    </div>
+                    <div class="row pt-1 pl-1 display-1 pl-1">
+                        <div class="col text-center">
+                            <p style="font-size:18px;">Not Found !!!</p>
+                        </div>
+                    </div>
+                    <div class="row pl-1 pt-2 pb-4">
+                    </div>
+                </div>
+                <div class="col-6 text-center d-none d-sm-block"
+                    style="background-color: #323544;">
+                    <div class="row pt-2 pb-2" style="background-color: #2d303d;">&nbsp;
+                    </div>
+                </div>
+                <div class="col text-center d-none d-sm-block"
+                    style="background-color: #323544;border-radius: 0px 15px 15px 0px;flex:0 0 1%;">
+                    <div class="row pt-2 pb-2" style="background-color: #2d303d;border-radius: 0px 15px 0px 0px;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </script>
     <script src="//code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
@@ -108,6 +152,7 @@
     <script>
     
     $(document).ready(function() {
+        // convertUTCDateToLocalDate :  Get User date
         function convertUTCDateToLocalDate(date) {
             var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
 
@@ -118,6 +163,7 @@
 
             return newDate;
         }
+        // dateGetWeekDay : Return day of the week
         function dateGetWeekDay(value) {
             var weekdays = new Array(
                 "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -126,6 +172,7 @@
             var day = dt.getDay();
             return weekdays[day];
         }
+        // dateGetDayMonth : Return Month , short convention
         function dateGetDayMonth(value) {
             var monthNames = new Array(
                 "Jan", "Feb", "Mar",
@@ -138,9 +185,11 @@
             var month = dt.getMonth();
             return day + " " + monthNames[month];
         }
+        // floatRound : return round number
         function floatRound(value){
             return Math.round(value)
         }
+        // int2Color : Convert int and mod to color. 
         function int2Color(value,mod){
             var colorList = new Array(
                 "262936", "323544",
@@ -148,14 +197,9 @@
             );
             return colorList[(value % 2) + mod];
         }
+        // stringToCase : return string on upercase or lowercase
         function stringToCase(value, upper) {
             return upper ? value.toUpperCase() : value.toLowerCase();
-        }
-        function getForecast(){
-            var location = $('#location').val()
-            $.getJSON('forecast?location='+ location, function (data) {
-                $('#output').html($('#template').render(data));
-            });
         }
         var myHelpers = {
             dateGetWeekDay: dateGetWeekDay,
@@ -164,14 +208,41 @@
             int2Color: int2Color,
             stringToCase: stringToCase
         };
-
         $.views.helpers(myHelpers);
 
-        $('#go').on('click', function (event) {
-            event.preventDefault();
-            getForecast();
+        // getForecast : Forecast call
+        function getForecast(location){
+            $.getJSON('forecast?location='+ location, function (data) {
+                $('#output').html($('#template').render(data));
+            })
+            .fail(function(){
+                $('#output').html($('#template404').render());
+            });
+        }
+
+        window.addEventListener('popstate', function(e){
+            var location = e.state;
+
+            if (location == null) {
+                textWrapper.innerHTML = " ";
+                content.innerHTML = " ";
+                document.title = defaultTitle;
+            } else {
+                getForecast(location);
+                document.title = "Weather Forecast | " + location;
+            }
+        })
+
+        $('#go').on('click', function (e) {
+            e.preventDefault();
+            var location = $('#location').val();
+            url = "?location="+location;
+            history.pushState(location, null, url);
+            getForecast(location);
+            document.title = "Weather Forecast | " + location;
+            e.stopPropagation();
         });
-        getForecast();
+        $('#go').click()
     });
     </script>
 </body>
