@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rfiestas/forecast"
+	forecast "github.com/rfiestas/forecast-vercel"
 )
 
 // getQueryKey : take a http request url query key, assign default value when not exist.
