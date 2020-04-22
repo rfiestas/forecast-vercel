@@ -1,17 +1,13 @@
-// Package p contains an HTTP Cloud Function.
-package p
+// Package forecast contains an HTTP Cloud Function.
+package forecast
 
 import (
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
-	"os"
-	"strings"
 )
 
-// getQueryKey : take a http request url query key, assign default value when not exist.
-func getQueryKey(r *http.Request, key string, failure string) string {
+// GetQueryKey : take a http request url query key, assign default value when not exist.
+func GetQueryKey(r *http.Request, key string, failure string) string {
 	var value string
 	keys, ok := r.URL.Query()[key]
 	if !ok || len(keys[0]) < 1 {
@@ -22,6 +18,7 @@ func getQueryKey(r *http.Request, key string, failure string) string {
 	return url.QueryEscape(value)
 }
 
+/*
 // ForecastAPIV1 : Forecast call
 func ForecastAPIV1(w http.ResponseWriter, r *http.Request) {
 	var location string
@@ -51,3 +48,4 @@ func GetRobots(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, data)
 	return
 }
+*/

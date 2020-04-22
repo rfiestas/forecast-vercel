@@ -1,4 +1,4 @@
-package p
+package forecast
 
 import (
 	"encoding/json"
@@ -158,8 +158,8 @@ func weatherConditionsYahooMap(condition string) string {
 }
 
 // forecastAPIV1 : forecast struct convert
-func forecastAPIV1(forecast forecastStruct) ForecastAPIV1Struct {
-	var res ForecastAPIV1Struct
+func forecastAPIV1(forecast forecastStruct) APIV1Struct {
+	var res APIV1Struct
 	lastUpdated, _ := time.Parse("2006-01-02 15:04", forecast.Current.LastUpdated)
 	res.Location.Name = forecast.Location.Name
 	res.Current.LastUpdated = lastUpdated

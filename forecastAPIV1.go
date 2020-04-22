@@ -1,11 +1,11 @@
-package p
+package forecast
 
 import (
 	"time"
 )
 
-// ForecastAPIV1Struct : Main Forecast Struct V1
-type ForecastAPIV1Struct struct {
+// APIV1Struct : Main Forecast Struct V1
+type APIV1Struct struct {
 	Location struct {
 		Name string `json:"name"`
 	} `json:"location"`
