@@ -1,4 +1,4 @@
-package forecast
+package handler
 
 import (
 	"encoding/json"
