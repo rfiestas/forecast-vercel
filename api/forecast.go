@@ -21,8 +21,8 @@ func getQueryKey(r *http.Request, key string, failure string) string {
 	return url.QueryEscape(value)
 }
 
-// ForecastAPIV1 : Forecast call
-func ForecastAPIV1(w http.ResponseWriter, r *http.Request) {
+// Handler is the ForecastAPIV1, Forecast call
+func Handler(w http.ResponseWriter, r *http.Request) {
 	var location string
 	location = getQueryKey(r, "location", "Barcelona")
 	fmt.Fprint(w, p.GetForecastAPIV1(url.QueryEscape(location)))
