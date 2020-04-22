@@ -10,8 +10,8 @@ import (
 	"strings"
 )
 
-// GetQueryKey : take a http request url query key, assign default value when not exist.
-func GetQueryKey(r *http.Request, key string, failure string) string {
+// getQueryKey : take a http request url query key, assign default value when not exist.
+func getQueryKey(r *http.Request, key string, failure string) string {
 	var value string
 	keys, ok := r.URL.Query()[key]
 	if !ok || len(keys[0]) < 1 {
