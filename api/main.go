@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rfiestas/forecast"
+	p "github.com/rfiestas/forecast"
 )
 
 // getQueryKey : take a http request url query key, assign default value when not exist.
@@ -27,16 +27,16 @@ func getQueryKey(r *http.Request, key string, failure string) string {
 // ForecastAPIV1 : Forecast call
 func ForecastAPIV1(w http.ResponseWriter, r *http.Request) {
 	var location string
-	location = forecast.GetQueryKey(r, "location", "Barcelona")
-	fmt.Fprint(w, forecast.GetForecastAPIV1(url.QueryEscape(location)))
+	location = getQueryKey(r, "location", "Barcelona")
+	fmt.Fprint(w, p.GetForecastAPIV1(url.QueryEscape(location)))
 	return
 }
 
 // GetIndex : Return index.html
 func GetIndex(w http.ResponseWriter, r *http.Request) {
 	var location string
-	location = forecast.GetQueryKey(r, "location", "Barcelona")
-	data, err := ioutil.ReadFile(forecast.GetIndexAPIV1())
+	location = getQueryKey(r, "location", "Barcelona")
+	data, err := ioutil.ReadFile(p.GetIndexAPIV1())
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
