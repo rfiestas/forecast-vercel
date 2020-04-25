@@ -111,6 +111,16 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.3/jsrender.min.js"></script>
     <script>
         $(document).ready(function () {
+            
+            // getUrlVars : gets values from parameters
+            function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
+
             // getUrlParam : gets parameters from the url
             function getUrlParam(parameter, defaultvalue){
                 var urlparameter = defaultvalue;
