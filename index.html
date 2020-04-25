@@ -26,7 +26,7 @@
                 </ul>
                 <form class="form-inline mt-2 mt-md-0 mb-0">
                     <input id="location" class="form-control mr-sm-2" type="text" placeholder="Location"
-                        aria-label="Search" value="barcelona">
+                        aria-label="Search" value="">
                     <button id="go" class="btn btn-light my-2 my-sm-0" type="submit">Go</button>
                 </form>
             </div>
@@ -47,7 +47,7 @@
                         <div class="col text-right">{{:~dateGetDayMonth(current.last_updated)}}</div>
                     </div>
                     <div class="row pt-4 pl-1">
-                        <div class="col"><p style="font-size:18px;">{{:location.name}}</p></div>
+                        <div class="col"><p style="font-size:18px;text-transform: capitalize;">{{:location.name}}</p></div>
                     </div>
                     <div class="row display-1 pl-1">
                         <div class="col font-weight-bold">
@@ -111,6 +111,16 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.3/jsrender.min.js"></script>
     <script>
         $(document).ready(function () {
+            // getUrlParam : gets parameters from the url
+            function getUrlParam(parameter, defaultvalue){
+                var urlparameter = defaultvalue;
+                if(window.location.href.indexOf(parameter) > -1){
+                    urlparameter = getUrlVars()[parameter];
+                }
+                return urlparameter;
+            }
+            document.getElementById("myText").value = getUrlParam('location','barcelona');
+
             // convertUTCDateToLocalDate :  Get User date
             function convertUTCDateToLocalDate(date) {
                 var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
