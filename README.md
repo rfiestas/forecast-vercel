@@ -4,6 +4,4 @@
 
 ## Resources
 
-- [Openweather](https://openweather.co.uk/weather-api), Simple and fast APIs. Access to current weather, forecasts, maps and historical data in JSON, XML, and HTML formats. A variety of map layers are available including precipitation, clouds, pressure, temperature, wind, and many more.
-- [Mapquest](https://developer.mapquest.com/), Build great location-based experiences and delight your customers with MapQuest for Business' geospatial solutions: mapping, geocoding, directions & search.
-- [weather-icons](https://erikflowers.github.io/weather-icons/), **Weather Icons** is the only icon font and CSS with 222 weather themed icons, ready to be dropped right into Bootstrap, or any project that needs high quality weather, maritime, and meteorological based icons!
+- [forecast](https://github.com/rfiestas/forecast), A weather forecast written in Go.
